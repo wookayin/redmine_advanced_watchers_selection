@@ -7,3 +7,7 @@ Allows issue creator to select multiple watchers in convenience.
 - Select multiple watchers by group/role
 - Add watchers using Autocomplete text inputbox
 - Select watchers at issue modification as well as issue creation
+
+## Version Compatibility
+
+Redmine 2.1 and higher (requires jQuery)
