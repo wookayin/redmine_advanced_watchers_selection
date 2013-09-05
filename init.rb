@@ -1,6 +1,6 @@
 require 'redmine'
 
-require_dependency 'hooks/hooks'
+require_dependency 'advanced_watchers/hooks'
 Redmine::Plugin.register :redmine_advanced_watchers_selection do
   name 'Redmine Advanced Watchers Selection'
   author 'Jongwook Choi'
