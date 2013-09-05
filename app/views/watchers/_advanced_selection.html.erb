@@ -3,10 +3,31 @@
 <%= javascript_include_tag 'select2.min.js', :plugin => 'redmine_advanced_watchers_selection' %>
 <%= javascript_include_tag 'advanced_watchers.js', :plugin => 'redmine_advanced_watchers_selection' %>
 
-<span id="watchers-advanced" style="display:none;">
-  <select multiple id="watchers-select" data-placeholder="Start typing a name" >
-    <% @available_watchers.each do |watcher| %>
-    <option value="<%= watcher.id %>"> <%= watcher %>  </option>
-    <% end %>
-  </select>
-</span>
+<div id="watchers-advanced" style="display:none;">
+
+  <div class="watchers-advanced-autocomplete">
+    <select multiple id="watchers-select" data-placeholder="Start typing a name" >
+      <% @available_watchers.each do |watcher| %>
+      <option value="<%= watcher.id %>"> <%= watcher %>  </option>
+      <% end %>
+    </select>
+  </div>
+
+  <div class="watchers-advanced-by-group">
+  <%
+    options=""
+    @groups = Group.find(:all, :order => 'lastname').each do |item|
+      values = Array.new
+      item.users.each do |user| values << user[:id] end
+      options+="<option value=\"#{values.join(',')}\">#{item[:lastname]}</option>"
+    end
+  %>
+  By Group:
+  <%= select_tag(:watcher_multiple_group, options.html_safe) %>
+    <input type="button" class="action-select" value="Select" /> |
+    <input type="button" class="action-unselect" value="Unselect" /> |
+    <input type="button" class="action-select-all" value="Select All" /> |
+    <input type="button" class="action-unselect-all" value="Unselect All" />
+  </div>
+
+</div>
