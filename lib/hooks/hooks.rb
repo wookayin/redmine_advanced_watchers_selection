@@ -1,5 +1,6 @@
 module RedmineAdvancedWatchersSelection
   class Hooks < Redmine::Hook::ViewListener
+
     def view_issues_new_top(context={ })
       controller = context[:controller]
       return '' unless controller
@@ -11,5 +12,6 @@ module RedmineAdvancedWatchersSelection
           :locals => context
         })
     end
+
   end
 end

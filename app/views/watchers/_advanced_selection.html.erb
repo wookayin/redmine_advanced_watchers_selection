@@ -1,10 +1,12 @@
-<span id="watchers-advanced" style="display:none;">
-  An awesome watchers plugin goes here.
-</span>
+<%= stylesheet_link_tag 'select2.css', :plugin => 'redmine_advanced_watchers_selection' %>
+<%= stylesheet_link_tag 'advanced_watchers.css', :plugin => 'redmine_advanced_watchers_selection' %>
+<%= javascript_include_tag 'select2.min.js', :plugin => 'redmine_advanced_watchers_selection' %>
+<%= javascript_include_tag 'advanced_watchers.js', :plugin => 'redmine_advanced_watchers_selection' %>
 
-<script type="text/javascript">
-  // adjust position after DOM has loaded. requires jquery (redmine >= 2.1)
-  $(document).ready(function() {
-	  $("#watchers-advanced").show().appendTo($("#watchers_form"));
-  });
-</script>
+<span id="watchers-advanced" style="display:none;">
+  <select multiple id="watchers-select" data-placeholder="Start typing a name" >
+    <% @available_watchers.each do |watcher| %>
+    <option value="<%= watcher.id %>"> <%= watcher %>  </option>
+    <% end %>
+  </select>
+</span>
